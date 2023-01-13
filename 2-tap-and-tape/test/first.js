@@ -16,7 +16,6 @@ test('This is a test with a plan', function(t) {
     t.equal(1+1,2);
     t.equal(1+2,3);
     t.equal(2+2,4);
-    console.log("fuck it!");
 });
 
 // a name for your test is completely optional:
