@@ -2,12 +2,21 @@ const http = require('http');
 const wsock = require('websocket-stream');
 const ecstatic = require('ecstatic');
 const onend = require('end-of-stream');
+const router = require('routes')();
 
 const st = ecstatic(__dirname + '/public');
 
+router.addRoute('GET /user/:name', function(req, res, m) {
+  res.end('name=' + m.params.name + '\n');
+});
 
 const server = http.createServer(function (req, res) {
-  st(req, res);
+  const theresMatch = router.match(req.method + ' ' + req.url);
+  if (theresMatch) {
+    theresMatch.fn(req, res, theresMatch);
+  } else {
+    st(req, res);
+  }
 });
 server.listen(8888);
 

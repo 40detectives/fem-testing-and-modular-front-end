@@ -6,6 +6,7 @@
   "dependencies": {
     "ecstatic": "^4.1.4",
     "end-of-stream": "^1.4.4",
+    "routes": "^2.1.0",
     "split2": "^4.1.0",
     "to2": "^1.0.0",
     "websocket-stream": "^5.5.2",
