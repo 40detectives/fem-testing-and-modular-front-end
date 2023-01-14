@@ -1,5 +1,8 @@
 
-module.exports = function (bus, state) {
+module.exports = function (state, bus) {
+  state.visitors = 0;
+  state.x = 0;
+
   bus.on('set-visitors', function(n) {
     state.visitors = n;
     bus.emit('render');
