@@ -1,4 +1,5 @@
 const html = require('yo-yo');
+const reducer = require('./reducer')
 const EventEmitter = require('events');
  
 const state = {
@@ -8,14 +9,7 @@ const state = {
 
 // app wide events - start
 const bus = new EventEmitter();
-bus.on('increment-n', function() {
-  state.n++;
-  bus.emit('render');
-});
-bus.on('increment-x', function() {
-  state.x = (state.x+1) % 5;
-  bus.emit('render');
-});
+reducer(bus, state);
 bus.on('render', update);
 // app wide events - end
 
