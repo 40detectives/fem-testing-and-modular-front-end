@@ -1,5 +1,19 @@
 {
+  "scripts": {
+    "dev": "watchify yo-yo-example.js -o public/bundle.js -dv",
+    "build": "browserify yo-yo-example.js | uglifyjs | gzip > public/bundle.js.gz"
+  },
   "dependencies": {
+    "ecstatic": "^4.1.4",
+    "end-of-stream": "^1.4.4",
+    "split2": "^4.1.0",
+    "to2": "^1.0.0",
+    "websocket-stream": "^5.5.2",
     "yo-yo": "^1.4.1"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "uglifyjs": "^2.4.11",
+    "watchify": "^4.0.0"
   }
 }

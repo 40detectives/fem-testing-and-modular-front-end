@@ -1,7 +1,7 @@
 
 module.exports = function (bus, state) {
-  bus.on('increment-n', function() {
-    state.n++;
+  bus.on('set-visitors', function(n) {
+    state.visitors = n;
     bus.emit('render');
   });
   
