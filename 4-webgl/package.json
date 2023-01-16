@@ -1,12 +1,14 @@
 {
   "dependencies": {
     "angle-normals": "^1.0.0",
+    "bunny": "^1.0.1",
     "glsl-hsl2rgb": "^1.1.0",
     "glsl-noise": "^0.0.0",
     "glslify": "^7.1.1",
     "icosphere": "^1.0.0",
     "regl": "^2.1.0",
     "regl-camera": "^2.1.1",
-    "regl-feedback": "^1.0.0"
+    "regl-feedback": "^1.0.0",
+    "teapot": "^1.0.0"
   }
 }

@@ -4,13 +4,15 @@ note to self execute this with the transform flag for glslify:
 */
 const regl = require('regl')();
 const camera = require('regl-camera')(regl, {distance: 4});
-const icosphere = require('icosphere');
 const anormals = require('angle-normals');
 const glsl = require('glslify');
 const feedback = require('regl-feedback');
+// const icosphere = require('icosphere');
+const bunny = require('bunny');
+// const teapot = require('teapot');
 
 function createBlob(regl) {
-  const mesh = icosphere(4);
+  const mesh = bunny; // icosphere(4);
   return regl({
     frag: glsl`
       precision highp float;
@@ -36,7 +38,7 @@ function createBlob(regl) {
         vpos = position;
         vnorm = normal;
         gl_Position = projection * view 
-          * vec4(position + location + normal * snoise(vec4(position, time + stage))*0.1, 1);
+          * vec4(position*0.2 + location + normal * snoise(vec4(position, time + stage))*0.1, 1);
       }
     `,
     attributes: {
