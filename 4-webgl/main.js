@@ -19,7 +19,7 @@ function createBlob(regl) {
       uniform float time, stage;
       void main() {
         gl_FragColor = vec4((vnorm+1.0)*0.5 * vec3(0, 1, 0)
-          + hsl2rgb(snoise(vec4(vpos, time * 0.1 + stage)),1.0, 0.5)
+          + hsl2rgb(0.34*stage+0.15*snoise(vec4(vpos, time * 0.1 + stage)),1.0, 0.5)
         , 1);
       }
     `,
