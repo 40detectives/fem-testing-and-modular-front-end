@@ -7,6 +7,7 @@ const camera = require('regl-camera')(regl, {distance: 4});
 const icosphere = require('icosphere');
 const anormals = require('angle-normals');
 const glsl = require('glslify');
+const feedback = require('regl-feedback');
 
 function createBlob(regl) {
   const mesh = icosphere(4);
@@ -52,16 +53,25 @@ function createBlob(regl) {
 }
 
   const draw ={
-    blob: createBlob(regl)
+    blob: createBlob(regl),
+    fb: feedback(regl, `
+    vec3 sample(vec2 uv, sampler2D tex) {
+      return 0.97*texture2D(tex, (0.99  * (2.0 * uv - 1.0) + 1.0) * 0.5).rgb;
+    }
+  `)
   };
+
+  const fbtex = regl.texture();
   
   regl.frame(function() {
     regl.clear({ color: [1,0,1,1], depth: true });
+    draw.fb({ texture: fbtex });
     camera(function() {
       draw.blob([
         { location: [0,0,0], stage: 0},
         { location: [0,0,-2], stage: 1},
         { location: [0,0,2], stage: 2},
       ]);
+      fbtex({ copy: true, mag: 'linear', min: 'linear'});
     });
   });
